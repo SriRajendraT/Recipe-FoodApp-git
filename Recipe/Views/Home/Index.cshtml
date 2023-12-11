@@ -36,7 +36,7 @@
                                 <a href="@Url.Action("Details","Home",new {id=item.ID})" class="text-warning" title="Edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <span data-id="@item.ID" class="Favourite" title="Favourite">
+                                <span data-id="@item.ID" id="Favourite" title="Favourite">
                                     @if (item.FAVOURITES == "Y")
                                     {
                                         <i class="fa-solid c-pink fa-heart"></i>
@@ -71,8 +71,8 @@
         </div> *@
     </div>
 <script>
-    $('.Favourite').on('click', function () {
-        let ele = $(this);
+    $('#Favourite').on('click', function () {
+        let ele = $(this);  
         let btn = ele.find('i')
         $.ajax({
             url: '@Url.Action("ChangeFav","Home")',
