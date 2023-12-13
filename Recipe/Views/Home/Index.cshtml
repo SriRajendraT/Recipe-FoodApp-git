@@ -1,93 +1,61 @@
-﻿@model List<RecipeDetails>
+﻿﻿@using Recipe.Helpers;
+@model PagerResponse<RecipeDetails>
 @{
-    ViewData["Title"] = "Recipe";
+    ViewData["Title"] = ViewData["section"];
 }
 
-<div class="container">
-    <div class="container mt-3 tblb">
-        <h3 class="text-light">Your Recipes</h3>
+<div class="c-box rounded shadow-lg blur" style="z-index:-2">
+        <h3 class="mt-3">@(ViewData["Favourites"] != "Y" ? "Your Recipes" : "Favourite Recipes")</h3>
         <hr />
         <div class="row mt-3 mb-3">
-            <div class="col-12 d-start">
-                <a class="btn btn-primary" href="@Url.Action("Details","Home")">
-                    <i class="fa-solid fa-plus"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12 h-50">
-                <table class="table table-striped text-center">
-                    <tr>
-                        <th></th>
-                        <th class="text-light">Recipe Name</th>
-                        <th class="text-light">No of Ingredients</th>
-
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-
-                            <td class="options">
-
-                                <a href="@Url.Action("View","Home",new {id=item.ID})" class="" title="View">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                                <a href="@Url.Action("Details","Home",new {id=item.ID})" class="text-warning" title="Edit">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <span data-id="@item.ID" id="Favourite" title="Favourite">
-                                    @if (item.FAVOURITES == "Y")
-                                    {
-                                        <i class="fa-solid c-pink fa-heart"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="fa-regular fa-heart"></i>
-                                    }
-                                </span>
-                            </td>
-                            <td class="text-light">@item.RECIPE_NAME</td>
-                            <td class="text-light">@item.TotalIngredients</td>
-
-                        </tr>
-                    }
-                </table>
-            </div>
-        </div>
-
-        @* <div class="col-12">
-            <div class="row r-start">
-                @foreach(var item in Model)
+            <div class="col-6 d-start">
+                
+                
+                @if (ViewData["Favourites"] != "Y")
                 {
-                    <div class="col-md-2 col-sm-6">
-                        <div class="img-block d-center">
-                            <img src="https://cdn4.vectorstock.com/i/1000x1000/16/68/food-logo-template-vector-26541668.jpg" class="img-thumbnail  d-center" alt="" />
-                        </div>
-                        <div class="text-info">@item.RECIPE_NAME</div>
-                    </div>
+                    <a class="btn btn-primary shadow" href="@Url.Action("Details","Home")">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
                 }
             </div>
-        </div> *@
-    </div>
-<script>
-    $('#Favourite').on('click', function () {
-        let ele = $(this);  
-        let btn = ele.find('i')
-        $.ajax({
-            url: '@Url.Action("ChangeFav","Home")',
-            type: 'POST',
-            data: { id: ele.data('id'), change: btn.hasClass('fa-regular') },
-            success: function (res) {
-                if (res['success'] == true) {
+            <div class="col-6 d-end">
+                <div class="btn-group change-view-buttons shadow">
+                <button class="btn @(Model.VIEW == "table-view" ? "btn-primary":"btn-secondary") change-view" data-view="table-view" title="List view">
+                        <i class="fa fa-list"></i>
+                    </button>
+                <button class="btn @(Model.VIEW == "block-view" ? "btn-primary":"btn-secondary") change-view" data-view="block-view" title="Grid view">
+                        <i class="fa fa-grip"></i>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row mt-3 view">
+            @Html.Partial("Pages",Model) 
+        </div>
+    <script>
+        $(document).on('click', 'button.change-view.btn-secondary', function () {
 
-                    btn.hasClass('fa-regular') ?
-                        btn.removeClass('fa-regular').addClass('fa-solid c-pink') :
-                        btn.removeClass('fa-solid c-pink').addClass('fa-regular')
+            spinner(true)
+            $.ajax({
+                url: '@Url.Action("LoadPages","Home")',
+                type: 'POST',
+                data: {
+                    currentPage: $('.pager span.active').text(),
+                    pageSize: 12,
+                    maxPages: 5,
+                    view: $(this).data('view')
+                },
+                success: function (res) {
+                    $('.change-view').toggleClass('btn-primary btn-secondary')
+                    $('.view').html(res)
+                    spinner(false)
+                },
+                error: function (err) {
+                    spinner(false)
+                    alert(err)
                 }
-            }
+            })
         })
-    })
-</script>
+    </script>
 </div>
-
