@@ -1,6 +1,4 @@
-﻿using Recipe.Helpers;
-
-namespace Recipe.Models
+﻿namespace Recipe.Models
 {
     public class RecipeType : BaseClass<decimal>
     {

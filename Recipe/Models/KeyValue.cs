@@ -1,4 +1,4 @@
-﻿namespace Recipe.Helpers
+﻿namespace Recipe.Models
 {
     public class KeyValue
     {
