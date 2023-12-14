@@ -4,8 +4,8 @@
 @if (Model.VIEW == "table-view")
 {
     <div class="col-12 h-50 table-view">
-        <table class="table table-striped shadow">
-            <tr>
+        <table class="table table-striped text-center shadow">
+            <tr class="text-light">
                 <th>Actions</th>
                 <th>Recipe Name</th>
                 <th>No of Ingredients</th>
@@ -14,7 +14,7 @@
 
             @foreach (var item in Model.Pages)
             {
-                <tr>
+                <tr class="text-light">
 
                     <td class="options">
 
