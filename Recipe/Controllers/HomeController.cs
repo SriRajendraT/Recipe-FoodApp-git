@@ -105,6 +105,7 @@ namespace Recipe.Controllers
         }
         public async Task<IActionResult> SaveImage(ImageDetails imgDetails)
         {
+            imgDetails.Base64 = imgDetails.Base64.Replace("data:"+imgDetails.Image_Type+";base64,", "");
             var response = await _request.ApiCallPost<Guid?>("Documents", "SaveImage", imgDetails);
             return Json(response);
         }

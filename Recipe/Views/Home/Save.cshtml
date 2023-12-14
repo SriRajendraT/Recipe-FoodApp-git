@@ -108,14 +108,17 @@
 <script>
     $(document).on('click','#upload',() => $('#browse').click())
     $(document).on('change','#browse',function(e){
+        debugger;
         let file = this.files[0];
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
+            debugger;
             spinner(true)
             $.ajax({
+                
                 url:'@Url.Action("SaveImage","Home")',
-                data: { Image_Name: file.name, Image_Type: file.type, Base64: reader.result?.replace('data:image/jpeg;base64,', ''), Temp_Id: $('#temp_id').val() },
+                data: { Image_Name: file.name, Image_Type: file.type, Base64: reader.result, Temp_Id: $('#temp_id').val() },
                 type:'POST',
                 success:function(res){
                     spinner(false)
