@@ -5,7 +5,7 @@
 {
     <div class="col-12 h-50 table-view">
         <table class="table table-striped text-center shadow">
-            <tr class="text-light">
+            <tr class="text-info">
                 <th>Actions</th>
                 <th>Recipe Name</th>
                 <th>No of Ingredients</th>
@@ -41,9 +41,11 @@
                         @{
                             var color = item.RECIPE_TYPE_ID == 1 ? "green" : "brown";
                         }
-                        <div style="aspect-ratio:1/1;width:20px;border:2px solid @color" class="d-center mx-2">
+                        <div class="d-center">
+                        <div style="aspect-ratio:1/1;width:20px;border:2px solid @color" class="d-center">
                             <div style="aspect-ratio:1/1;width:10px;background:@color;border-radius:50px;">
                             </div>
+                        </div>
                         </div>
                     </td>
                 </tr>
