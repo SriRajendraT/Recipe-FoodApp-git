@@ -1,19 +1,20 @@
 ﻿@* ﻿@model as List<Ingredient> *@
     @model List<Ingredient>
 
-<div class="modal-header">
-    <h5 class="modal-title" id="staticBackdropLabel">Ingredients: @(Model?.Count??0)</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="bging">
+<div class="modal-header ">
+    <h5 class="modal-title blur bgcolorIng" id="staticBackdropLabel">Ingredients: @(Model?.Count??0)</h5>
+    <button type="button" class="btn-close btn-danger bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-<div class="modal-body">
+<div class="modal-body blur">
     @for (int i = 0; i < (Model?.Count??0); i++)
     {
         <div class="row ing">
             <div class="col-6">
-                @Html.TextBox($"Ingredients[{i}].INGREDIENT_NAME",Model[i].INGREDIENT_NAME,new {@class="form-control Name",@placeholder="Name"})
+                @Html.TextBox($"Ingredients[{i}].INGREDIENT_NAME",Model[i].INGREDIENT_NAME,new {@class="form-control Name text-light",@placeholder="Name"})
             </div>
             <div class="col-6">
-                @Html.TextBox($"Ingredients[{i}].QUANTITY",Model[i].QUANTITY,new {@class="form-control Quantity",@placeholder="Quantity"})
+                    @Html.TextBox($"Ingredients[{i}].QUANTITY",Model[i].QUANTITY,new {@class="form-control Quantity text-light",@placeholder="Quantity"})
             </div>
             @Html.Hidden($"Ingredients[{i}].RECIPE_ID",Model[i].RECIPE_ID ,new {@class="recipe_id"})
             @Html.Hidden($"Ingredients[{i}].ID",Model[i].ID ,new {@class="id"})
@@ -36,4 +37,5 @@
             
         </div>
     </div>
+</div>
 </div>

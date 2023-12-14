@@ -48,7 +48,7 @@
             <div class="col-lg-4 border border-warning  ">
                 <div class="row">
                 <div class="col-12 dark-accent text-light d-center">
-                        <h5>Ingredientss:</h5>
+                    <h5><i class="fa-solid fa-cart-shopping"></i> Ingredients:</h5>
                     </div>
                     <div class="col-12 scroll blur white-accent" style="box-shadow:0px 0px 10px 2px inset #00000069">
                         <table class="table table-striped text-center">
@@ -59,7 +59,7 @@
                             </tr>
                             @foreach (var item in Model.Ingredients)
                             {
-                                <tr>
+                                <tr class="text-success">
                                     <td>@item.INGREDIENT_NAME</td>
                                     <td>@item.QUANTITY</td>
                                 </tr>
