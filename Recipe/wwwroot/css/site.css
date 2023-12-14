@@ -255,7 +255,7 @@ body {
     bottom: 0;
     transform: translateY(10px);
     box-shadow: -5px 0px 4px 2px #5b45013d;
-    background: #d98708;
+    background: #cfcfcf36;
 }
 
 .pager {
@@ -278,7 +278,7 @@ body {
     }
 
         .pager > span.active {
-            background: #ffd707d9;
+            background: #cfcfcf36;
             color: black;
         }
 

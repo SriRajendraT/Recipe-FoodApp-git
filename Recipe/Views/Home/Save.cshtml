@@ -6,10 +6,10 @@
     foodtypes.Add(new RecipeType{RECIPETYPE_NAME="Veg",ID = 1});
     foodtypes.Add(new RecipeType{RECIPETYPE_NAME="Non-Veg",ID = 2});
 }
-<div class="c-box rounded shadow-lg " style="z-index:-2">
-        <h3 class="mt-3">
-            <a class="no-decor" href="@Url.Action("Index","Home")">
-                <i class="fas fa-arrow-left text-dark"></i>
+<div class="c-box rounded shadow-lg text-light" style="z-index:-2">
+    <h3 class="mt-3 ">
+        <a class="no-decor text-light" href="@Url.Action("Index","Home")">
+                <i class="fas fa-arrow-left "></i>
             </a> @($"{(Model.ID > 0 ? "Edit" : "Add")} recipe")
         </h3>
         <hr />
@@ -49,7 +49,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3 mt-3">
                                         <label for="email" class="form-label">Recipe Name:</label>
-                                        @Html.TextBoxFor(x => x.RECIPE_NAME,new {@class="form-control"})
+                                        @Html.TextBoxFor(x => x.RECIPE_NAME,new {@class="form-control text-light"})
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -59,9 +59,9 @@
                                             @foreach(var item in foodtypes)
                                             {
                                                 var color = item.ID == 1 ? "green":"brown";
-                                                <div class="col-lg-6 d-center">
-                                                    <div class="form-check d-center">
-                                                        <input type="radio" name="RECIPE_TYPE_ID" value="@item.ID" class="form-check-input" @(item.ID == Model.RECIPE_TYPE_ID ? "checked":"")/>
+                                            <div class="col-lg-6 d-center text-light">
+                                                <div class="form-check d-center ">
+                                                    <input type="radio" name="RECIPE_TYPE_ID" value="@item.ID" class="form-check-input " @(item.ID == Model.RECIPE_TYPE_ID ? "checked" : "") />
                                                     </div>
                                                     <div style="aspect-ratio:1/1;width:20px;border:2px solid @color" class="d-center mx-2" >
                                                         <div style="aspect-ratio:1/1;width:10px;background:@color;border-radius:50px;">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">Steps:</label>
-                                @Html.TextAreaFor(x => x.DESCRIPTION,new {@class="form-control",@rows="5"})
+                            @Html.TextAreaFor(x => x.DESCRIPTION,new {@class="form-control text-light",@rows="5"})
                             </div>
                             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
